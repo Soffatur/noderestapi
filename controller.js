@@ -4,5 +4,5 @@ var response = require('./res');
 var connection = require('./koneksi');
 
 exports.index = function(req, res){
-    response.ok('REST API send data');
+    response.ok('REST API send data', res);
 };
