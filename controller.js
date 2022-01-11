@@ -29,3 +29,18 @@ exports.findMahasiswa = function(req, res){
         }
     );
 }
+
+exports.postMahasiswa = function(req, res){
+    let nim = req.body.nim;
+    let nama = req.body.nama;
+    let jurusan = req.body.jurusan;
+    connection.query("INSERT INTO mahasiswa VALUES (0,?,?,?)", [nim, nama, jurusan],
+        function(error, rows, fields){
+            if(error){
+                connection.log(error);
+            }else{
+                response.ok('Berhasil menambahkan data', res);
+            }
+        }
+    );
+}
