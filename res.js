@@ -9,3 +9,13 @@ exports.ok = function(values, res){
     res.json(data);
     res.end();
 }
+
+exports.false = function(values, res){
+    var data = {
+        'status': 404,
+        'values': values
+    }
+
+    res.json(data);
+    res.end();
+}

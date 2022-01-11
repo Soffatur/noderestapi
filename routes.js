@@ -7,4 +7,5 @@ module.exports = function(app){
     app.route('/mahasiswa').get(json.getMahasiswa);
     app.route('/mahasiswa/:id').get(json.findMahasiswa);
     app.route('/mahasiswa').post(json.postMahasiswa);
+    app.route('/mahasiswa/:id').put(json.putMahasiswa);
 }
