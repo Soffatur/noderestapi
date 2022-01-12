@@ -30,11 +30,9 @@ exports.nested = function(values, res){
             // check is array data
             if(Array.isArray(group.matakuliah)){
                 // add value to group
-                console.log(item.matakuliah);
                 group.matakuliah.push(item.matakuliah);
             }else{
                 group.matakuliah = [group.matakuliah, item.matakuliah]
-                console.log(item.matakuliah);
             }
         }else{
             accumulate[item.nama] = item;
