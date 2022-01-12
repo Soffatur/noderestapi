@@ -61,11 +61,44 @@ exports.putMahasiswa = function(req, res){
                 connection.log(error);
             }else{
                 if(rows.affectedRows == 0){
-                    response.false('data tidak ditemukan untuk di edit', res);
+                    response.fail('data tidak ditemukan untuk di edit', res);
                 }else{
                     response.ok('Berhasil mengedit data', res);
                 }
             }
         }
     );
+}
+
+// hapus data
+exports.deleteMahasiswa = function(req, res){
+    let id = req.params.id;
+    connection.query("DELETE FROM mahasiswa WHERE id = ?", [id],
+    function(error, rows, fields){
+        if(error){
+            connection.log(error);
+        }else{
+            if(rows.affectedRows == 0){
+                response.fail('data tidak ditemukan untuk di edit', res);
+            }else{
+                response.ok('Berhasil menghapus data', res);
+            }
+        }
+    });
+}
+
+// menampilkan mata kuliah group
+exports.groupMatkulMhs = function(req, res){
+    connection.query("SELECT mahasiswa.id, mahasiswa.nim, mahasiswa.nama, mahasiswa.jurusan, matkul.matakuliah, matkul.sks FROM krs JOIN mahasiswa ON mahasiswa.id = krs.id_mahasiswa JOIN matkul ON matkul.id = krs.id_matkul",
+    function(error, rows, fields){
+        if(error){
+            connection.log(error);
+        }else{
+            if(rows.affectedRows == 0){
+                response.fail('data tidak ada', res);
+            }else{
+                response.nested(rows, res);
+            }
+        }
+    });
 }
